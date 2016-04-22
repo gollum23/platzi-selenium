@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-! docker network create -d bridge selenium > /dev/null 2>&1
+! docker network create -d bridge selenium_net > /dev/null 2>&1
 
 case "$(uname -s)" in
 

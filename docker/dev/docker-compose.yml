@@ -8,12 +8,26 @@ services:
     ports:
       - "2010:22"
       - "8010:8010"
-    container_name: gollum23-selenium
+    container_name: gollum23-django
     networks:
-      selenium:
+      selenium_net:
+        aliases:
+          - gollum23-django
+  selenium:
+    image: selenium/standalone-chrome:2.53.0
+    container_name: gollum23-selenium
+    environment:
+      JAVA_OPTS: -Djava.security.egd=file:/dev/./urandom
+    volumes:
+      - /dev/shm:/dev/shm
+      - ../..:/app
+    ports:
+      - "4444:4444"
+    networks:
+      selenium_net:
         aliases:
           - gollum23-selenium
 
 networks:
-  selenium:
+  selenium_net:
     external: True

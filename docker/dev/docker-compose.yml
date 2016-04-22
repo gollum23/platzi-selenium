@@ -1,0 +1,19 @@
+version: '2'
+services:
+  django:
+    image: gollum23/selenium-dev
+    volumes:
+      - ~/.ssh/id_rsa.pub:/tmp/authorized_keys
+      - ../..:/app
+    ports:
+      - "2010:22"
+      - "8010:8010"
+    container_name: gollum23-selenium
+    networks:
+      selenium:
+        aliases:
+          - gollum23-selenium
+
+networks:
+  selenium:
+    external: True
